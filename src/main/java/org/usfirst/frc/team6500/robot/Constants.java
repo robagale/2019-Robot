@@ -17,6 +17,8 @@ public class Constants
     public static final int INPUT_LIFT_DESCEND_BUTTON = 4;
     public static final int INPUT_LIFT_BUTTONS[] = {INPUT_LIFT_ELEVATE_BUTTON, INPUT_LIFT_DESCEND_BUTTON};
 
+    public static final int INPUT_ALIGN_FLOORTAPE = 12;
+
 
     // Speed Constants
     public static final double SPEED_BASE = 0.85;

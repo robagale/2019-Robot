@@ -55,10 +55,7 @@ public class Robot extends TimedRobot
 
         // Setup: Autonomous
         TRCDrivePID.initializeTRCDrivePID(encoders, gyro, drive, TRCTypes.DriveType.Mecanum, Constants.SPEED_AUTO);
-
-        // Setup: Autonomous: Options
-        positionOptionID = TRCNetworkData.putOptions(Constants.OPTIONS_POSITIONS);
-        targetOptionID = TRCNetworkData.putOptions(Constants.OPTIONS_TARGETS);
+        AutoAlign.setDrive(drive);
 
 
         // Setup: Input
@@ -73,6 +70,9 @@ public class Robot extends TimedRobot
         TRCDriveInput.bindButton(Constants.INPUT_GUNNER_PORT, Constants.INPUT_LIFT_ELEVATE_BUTTON, lift::driveForward);
         TRCDriveInput.bindButton(Constants.INPUT_GUNNER_PORT, Constants.INPUT_LIFT_DESCEND_BUTTON, lift::driveReverse);
         TRCDriveInput.bindButtonAbsence(Constants.INPUT_GUNNER_PORT, Constants.INPUT_LIFT_BUTTONS, lift::fullStop);
+
+        // Setup: Input: Button Bindings: Alignment
+        TRCDriveInput.bindButton(Constants.INPUT_GUNNER_PORT, Constants.INPUT_ALIGN_FLOORTAPE, AutoAlign::alignWithFloorTape);
     }
 
     /**
@@ -91,7 +91,10 @@ public class Robot extends TimedRobot
     @Override
     public void autonomousPeriodic()
     {
-        // Nothing to do here ¯\_(ツ)_/¯
+        // Check all inputs
+        TRCDriveInput.updateDriveInput();
+        // And drive the robot
+        drive.driveCartesian(TRCDriveInput.getStickDriveParams(Constants.INPUT_DRIVER_PORT));
     }
 
     /**
