@@ -43,7 +43,7 @@ public class Constants
 	public final static int DRIVE_WHEEL_FRONTRIGHT = 3;
     public final static int DRIVE_WHEEL_REARRIGHT = 1;
     public final static int DRIVE_WHEEL_PORTS[] = {DRIVE_WHEEL_FRONTLEFT, DRIVE_WHEEL_REARLEFT, DRIVE_WHEEL_FRONTRIGHT, DRIVE_WHEEL_REARRIGHT};
-    public final static SpeedControllerType DRIVE_WHEEL_TYPES[] = {SpeedControllerType.PWMTalonSRX, SpeedControllerType.PWMTalonSRX, SpeedControllerType.PWMTalonSRX, SpeedControllerType.PWMTalonSRX};
+    public final static SpeedControllerType DRIVE_WHEEL_TYPES[] = {SpeedControllerType.CANTalonSRX, SpeedControllerType.CANTalonSRX, SpeedControllerType.CANTalonSRX, SpeedControllerType.CANTalonSRX};
     
 
     // Directional System (Grabber/Lift) Constants
