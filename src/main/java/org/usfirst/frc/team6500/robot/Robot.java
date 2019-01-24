@@ -15,6 +15,7 @@ import org.usfirst.frc.team6500.trc.wrappers.sensors.TRCGyroBase;
 import org.usfirst.frc.team6500.trc.wrappers.systems.drives.TRCMecanumDrive;
 
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.RobotBase;
 
 
 public class Robot extends TimedRobot
@@ -34,45 +35,50 @@ public class Robot extends TimedRobot
     public void robotInit()
     {
         // Setup: Communications
-        TRCNetworkData.initializeNetworkData(TRCTypes.DataInterfaceType.Board);
-        TRCNetworkVision.initializeVision();
-        TRCCamera.initializeCamera();
+        // TRCNetworkData.initializeNetworkData(TRCTypes.DataInterfaceType.Board);
+        // TRCNetworkVision.initializeVision();
+        // TRCCamera.initializeCamera();
 
 
         // Setup: Systems: Drivetrain
         drive = new TRCMecanumDrive(Constants.DRIVE_WHEEL_PORTS, Constants.DRIVE_WHEEL_TYPES);
  
         // Setup: Systems: Directional
-        lift = new TRCDirectionalSystem(Constants.LIFT_MOTORS, Constants.LIFT_MOTOR_TYPES, true, 1.0, -0.6);
-        grabber = new TRCDirectionalSystem(Constants.GRABBER_MOTORS, Constants.GRABBER_MOTOR_TYPES, true, 1.0, -1.0);
-        TRCDirectionalSystemAction.registerSystem("Lift", lift);
-        TRCDirectionalSystemAction.registerSystem("Grabber", grabber);
+        // lift = new TRCDirectionalSystem(Constants.LIFT_MOTORS, Constants.LIFT_MOTOR_TYPES, true, 1.0, -0.6);
+        // grabber = new TRCDirectionalSystem(Constants.GRABBER_MOTORS, Constants.GRABBER_MOTOR_TYPES, true, 1.0, -1.0);
+        // TRCDirectionalSystemAction.registerSystem("Lift", lift);
+        // TRCDirectionalSystemAction.registerSystem("Grabber", grabber);
 
         // Setup: Systems: Sensors
-        gyro = new TRCGyroBase(TRCTypes.GyroType.NavX);
-        encoders = new TRCEncoderSet(Constants.ENCODER_INPUTS, Constants.ENCODER_DISTANCE_PER_PULSE, false, 4);
+        // gyro = new TRCGyroBase(TRCTypes.GyroType.NavX);
+        // encoders = new TRCEncoderSet(Constants.ENCODER_INPUTS, Constants.ENCODER_DISTANCE_PER_PULSE, false, 4);
 
 
         // Setup: Autonomous
-        TRCDrivePID.initializeTRCDrivePID(encoders, gyro, drive, TRCTypes.DriveType.Mecanum, Constants.SPEED_AUTO);
-        AutoAlign.setDrive(drive);
+        // TRCDrivePID.initializeTRCDrivePID(encoders, gyro, drive, TRCTypes.DriveType.Mecanum, Constants.SPEED_AUTO);
+        // AutoAlign.setDrive(drive);
 
 
         // Setup: Input
         TRCDriveInput.initializeDriveInput(Constants.INPUT_PORTS, Constants.SPEED_BASE, Constants.SPEED_BOOST);
 
         // Setup: Input: Button Bindings: Grabber
-        TRCDriveInput.bindButton(Constants.INPUT_GUNNER_PORT, Constants.INPUT_GRAB_PULL_BUTTON, grabber::driveForward);
-        TRCDriveInput.bindButton(Constants.INPUT_GUNNER_PORT, Constants.INPUT_GRAB_RELEASE_BUTTON, grabber::driveReverse);
-        TRCDriveInput.bindButtonAbsence(Constants.INPUT_GUNNER_PORT, Constants.INPUT_GRAB_BUTTONS, grabber::fullStop);
+        // TRCDriveInput.bindButton(Constants.INPUT_GUNNER_PORT, Constants.INPUT_GRAB_PULL_BUTTON, grabber::driveForward);
+        // TRCDriveInput.bindButton(Constants.INPUT_GUNNER_PORT, Constants.INPUT_GRAB_RELEASE_BUTTON, grabber::driveReverse);
+        // TRCDriveInput.bindButtonAbsence(Constants.INPUT_GUNNER_PORT, Constants.INPUT_GRAB_BUTTONS, grabber::fullStop);
 
         // Setup: Input: Button Bindings: Lift
-        TRCDriveInput.bindButton(Constants.INPUT_GUNNER_PORT, Constants.INPUT_LIFT_ELEVATE_BUTTON, lift::driveForward);
-        TRCDriveInput.bindButton(Constants.INPUT_GUNNER_PORT, Constants.INPUT_LIFT_DESCEND_BUTTON, lift::driveReverse);
-        TRCDriveInput.bindButtonAbsence(Constants.INPUT_GUNNER_PORT, Constants.INPUT_LIFT_BUTTONS, lift::fullStop);
+        // TRCDriveInput.bindButton(Constants.INPUT_GUNNER_PORT, Constants.INPUT_LIFT_ELEVATE_BUTTON, lift::driveForward);
+        // TRCDriveInput.bindButton(Constants.INPUT_GUNNER_PORT, Constants.INPUT_LIFT_DESCEND_BUTTON, lift::driveReverse);
+        // TRCDriveInput.bindButtonAbsence(Constants.INPUT_GUNNER_PORT, Constants.INPUT_LIFT_BUTTONS, lift::fullStop);
 
         // Setup: Input: Button Bindings: Alignment
         //TRCDriveInput.bindButton(Constants.INPUT_GUNNER_PORT, Constants.INPUT_ALIGN_FLOORTAPE, AutoAlign::alignWithFloorTape);
+
+        // while (true)
+        // {
+        //     drive.driveCartesian(0, 0, 0.4);
+        // }
     }
 
     /**
@@ -115,6 +121,11 @@ public class Robot extends TimedRobot
         // Check all inputs
         TRCDriveInput.updateDriveInput();
         // And drive the robot
-        drive.driveCartesian(TRCDriveInput.getStickDriveParams(Constants.INPUT_DRIVER_PORT));
+        drive.driveCartesian(0, 0, 1);
+    }
+
+    public static void main(String... args)
+    {
+        RobotBase.startRobot(Robot::new);
     }
 }
