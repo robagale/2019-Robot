@@ -74,11 +74,6 @@ public class Robot extends TimedRobot
 
         // Setup: Input: Button Bindings: Alignment
         //TRCDriveInput.bindButton(Constants.INPUT_GUNNER_PORT, Constants.INPUT_ALIGN_FLOORTAPE, AutoAlign::alignWithFloorTape);
-
-        // while (true)
-        // {
-        //     drive.driveCartesian(0, 0, 0.4);
-        // }
     }
 
     /**
@@ -121,7 +116,7 @@ public class Robot extends TimedRobot
         // Check all inputs
         TRCDriveInput.updateDriveInput();
         // And drive the robot
-        drive.driveCartesian(0, 0, 1);
+        drive.driveCartesian(TRCDriveInput.getStickDriveParams(Constants.INPUT_DRIVER_PORT));
     }
 
     public static void main(String... args)
