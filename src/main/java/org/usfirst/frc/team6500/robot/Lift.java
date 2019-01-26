@@ -3,7 +3,7 @@ package org.usfirst.frc.team6500.robot;
 import edu.wpi.first.wpilibj.Spark;
 
 public class Lift {
-    Static Spark left, right;
+    static Spark left, right;
    private static boolean isReady;
 
 public static void initializeLift () {
