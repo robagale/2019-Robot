@@ -17,3 +17,7 @@ public class Ramps
         servo.setAngle(1); // TODO: find out minimum angle to open servo
     }
 }
+
+/*
+ *  THE END!
+ */
