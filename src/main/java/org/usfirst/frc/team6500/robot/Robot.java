@@ -74,6 +74,10 @@ public class Robot extends TimedRobot
 
         // Setup: Input: Button Bindings: Alignment
         //TRCDriveInput.bindButton(Constants.INPUT_GUNNER_PORT, Constants.INPUT_ALIGN_FLOORTAPE, AutoAlign::alignWithFloorTape);
+
+        // Setup: Initialize Ramp Servos
+        Ramps.initilizeRamps();
+        TRCDriveInput.bindButton(Constants.INPUT_DRIVER_PORT, Constants.INPUT_RAMP_RELEASE_BUTTON, Ramps::releaseRamps);
     }
 
     /**
@@ -117,6 +121,14 @@ public class Robot extends TimedRobot
         TRCDriveInput.updateDriveInput();
         // And drive the robot
         drive.driveCartesian(TRCDriveInput.getStickDriveParams(Constants.INPUT_DRIVER_PORT));
+
+        /* BOILERPLATE BUTTON BINDING FOR RAMP SERVOS
+        boolean shouldDeployRamps = TRCDriveInput.getButton(Constants.INPUT_DRIVER_PORT, 7);
+        if (shouldDeployRamps && Ramps.isDeployed() == false)
+        {
+            Ramps.releaseRamps();
+        }
+        */
     }
 
     public static void main(String... args)

@@ -78,6 +78,7 @@ public class Constants
     // Servos/Ramps Constants
     public final static int RAMP_LEFT_SERVO_CHANNEL = 0;
     public final static int RAMP_RIGHT_SERVO_CHANNEL = 1;
+    public final static int INPUT_RAMP_RELEASE_BUTTON = 7;
     public final static int RAMP_LEFT_SERVO_ANGLE = 1;
     public final static int RAMP_RIGHT_SERVO_ANGLE = 1;
 }
