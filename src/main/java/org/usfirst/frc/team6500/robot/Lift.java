@@ -10,7 +10,7 @@ public static void initializeLift () {
     left = new Spark(Constants.LIFT_MOTOR_LEFT);
     right = new Spark(Constants.LIFT_MOTOR_RIGHT);
 
-    isReady = true;
+    isReady = true
 
 }
 }
