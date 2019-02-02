@@ -44,7 +44,8 @@ public class Constants
     public final static int DRIVE_WHEEL_REARRIGHT = 2;
     public final static int DRIVE_WHEEL_PORTS[] = {DRIVE_WHEEL_FRONTLEFT, DRIVE_WHEEL_REARLEFT, DRIVE_WHEEL_FRONTRIGHT, DRIVE_WHEEL_REARRIGHT};
     public final static SpeedControllerType DRIVE_WHEEL_TYPES[] = {SpeedControllerType.CANTalonSRX, SpeedControllerType.CANTalonSRX, SpeedControllerType.CANTalonSRX, SpeedControllerType.CANTalonSRX};
-    
+    public final static boolean DRIVE_WHEEL_INVERTS[] = {false, true, false, true};
+
 
     // Directional System (Grabber/Lift) Constants
     public final static int LIFT_MOTOR_LEFT = 6;
@@ -59,7 +60,7 @@ public class Constants
     public final static int GRABBER_MOTOR_RIGHT = 5;
     public final static int GRABBER_MOTORS[] = {GRABBER_MOTOR_LEFT, GRABBER_MOTOR_RIGHT};
     public final static SpeedControllerType GRABBER_MOTOR_TYPES[] = {SpeedControllerType.Spark, SpeedControllerType.Spark};
-    public final static double GRABBER_TIME_EJECT = 1.0;
+     public final static double GRABBER_TIME_EJECT = 1.0;
 
 
     // Encoder Constants
@@ -72,6 +73,7 @@ public class Constants
 	public final static int ENCODER_INPUT_RR_A = 0;
     public final static int ENCODER_INPUT_RR_B = 1;
     public final static int ENCODER_INPUTS[] = {ENCODER_INPUT_FL_A, ENCODER_INPUT_FL_B, ENCODER_INPUT_FR_A, ENCODER_INPUT_FR_B, ENCODER_INPUT_RL_A, ENCODER_INPUT_RL_B, ENCODER_INPUT_RR_A, ENCODER_INPUT_RR_B};
+    public final static EncoderType ENCODER_TYPES[] = {EncoderType.Talon, EncoderType.Talon, EncoderType.Talon, EncoderType.Talon};
 
-    public final static double ENCODER_DISTANCE_PER_PULSE = 0.0990487842984034;
+    public final static double[] ENCODER_DISTANCES_PER_PULSE = {0.0990487842984034, 0.0990487842984034, 0.0990487842984034, 0.0990487842984034};
 }

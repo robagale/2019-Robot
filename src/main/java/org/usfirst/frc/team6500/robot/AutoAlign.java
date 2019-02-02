@@ -18,6 +18,7 @@ public class AutoAlign
         while (TRCNetworkVision.getContourX() != 0)
         {
             drive.driveCartesian(0.0, 0.0, 0.0);
+            
         }
     }
 }
