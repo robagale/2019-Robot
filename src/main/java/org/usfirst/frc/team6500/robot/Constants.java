@@ -74,6 +74,12 @@ public class Constants
     public final static int ENCODER_INPUT_RR_B = 1;
     public final static int ENCODER_INPUTS[] = {ENCODER_INPUT_FL_A, ENCODER_INPUT_FL_B, ENCODER_INPUT_FR_A, ENCODER_INPUT_FR_B, ENCODER_INPUT_RL_A, ENCODER_INPUT_RL_B, ENCODER_INPUT_RR_A, ENCODER_INPUT_RR_B};
     public final static EncoderType ENCODER_TYPES[] = {EncoderType.Talon, EncoderType.Talon, EncoderType.Talon, EncoderType.Talon};
-
     public final static double[] ENCODER_DISTANCES_PER_PULSE = {0.0990487842984034, 0.0990487842984034, 0.0990487842984034, 0.0990487842984034};
+  
+  // Servos/Ramps Constants
+    public final static int RAMP_LEFT_SERVO_CHANNEL = 0;
+    public final static int RAMP_RIGHT_SERVO_CHANNEL = 1;
+    public final static int INPUT_RAMP_RELEASE_BUTTON = 7;
+    public final static int RAMP_LEFT_SERVO_ANGLE = 1;
+    public final static int RAMP_RIGHT_SERVO_ANGLE = 1;
 }

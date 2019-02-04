@@ -75,6 +75,10 @@ public class Robot extends TimedRobot
 
         // Setup: Input: Button Bindings: Alignment
         //TRCDriveInput.bindButton(Constants.INPUT_GUNNER_PORT, Constants.INPUT_ALIGN_FLOORTAPE, AutoAlign::alignWithFloorTape);
+
+        // Setup: Initialize Ramp Servos
+        Ramps.initilizeRamps();
+        TRCDriveInput.bindButton(Constants.INPUT_DRIVER_PORT, Constants.INPUT_RAMP_RELEASE_BUTTON, Ramps::releaseRamps);
     }
 
     /**
