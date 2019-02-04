@@ -10,6 +10,7 @@ import org.usfirst.frc.team6500.trc.systems.TRCDirectionalSystem;
 import org.usfirst.frc.team6500.trc.systems.TRCDriveInput;
 import org.usfirst.frc.team6500.trc.util.TRCNetworkData;
 import org.usfirst.frc.team6500.trc.util.TRCTypes;
+import org.usfirst.frc.team6500.trc.util.TRCDriveParams;
 import org.usfirst.frc.team6500.trc.wrappers.sensors.TRCEncoderSet;
 import org.usfirst.frc.team6500.trc.wrappers.sensors.TRCGyroBase;
 import org.usfirst.frc.team6500.trc.wrappers.systems.drives.TRCMecanumDrive;
@@ -35,13 +36,13 @@ public class Robot extends TimedRobot
     public void robotInit()
     {
         // Setup: Communications
-        // TRCNetworkData.initializeNetworkData(TRCTypes.DataInterfaceType.Board);
-        // TRCNetworkVision.initializeVision();
+        TRCNetworkData.initializeNetworkData(TRCTypes.DataInterfaceType.Board);
+        TRCNetworkVision.initializeVision();
         // TRCCamera.initializeCamera();
 
 
         // Setup: Systems: Drivetrain
-        drive = new TRCMecanumDrive(Constants.DRIVE_WHEEL_PORTS, Constants.DRIVE_WHEEL_TYPES);
+        drive = new TRCMecanumDrive(Constants.DRIVE_WHEEL_PORTS, Constants.DRIVE_WHEEL_TYPES, Constants.DRIVE_WHEEL_INVERTS, true);
  
         // Setup: Systems: Directional
         // lift = new TRCDirectionalSystem(Constants.LIFT_MOTORS, Constants.LIFT_MOTOR_TYPES, true, 1.0, -0.6);
@@ -51,7 +52,7 @@ public class Robot extends TimedRobot
 
         // Setup: Systems: Sensors
         // gyro = new TRCGyroBase(TRCTypes.GyroType.NavX);
-        // encoders = new TRCEncoderSet(Constants.ENCODER_INPUTS, Constants.ENCODER_DISTANCE_PER_PULSE, false, 4);
+        encoders = new TRCEncoderSet(Constants.ENCODER_INPUTS, Constants.ENCODER_DISTANCES_PER_PULSE, false, 4, Constants.ENCODER_TYPES);
 
 
         // Setup: Autonomous
@@ -120,15 +121,12 @@ public class Robot extends TimedRobot
         // Check all inputs
         TRCDriveInput.updateDriveInput();
         // And drive the robot
-        drive.driveCartesian(TRCDriveInput.getStickDriveParams(Constants.INPUT_DRIVER_PORT));
-
-        /* BOILERPLATE BUTTON BINDING FOR RAMP SERVOS
-        boolean shouldDeployRamps = TRCDriveInput.getButton(Constants.INPUT_DRIVER_PORT, 7);
-        if (shouldDeployRamps && Ramps.isDeployed() == false)
-        {
-            Ramps.releaseRamps();
-        }
-        */
+        TRCDriveParams input = TRCDriveInput.getStickDriveParams(Constants.INPUT_DRIVER_PORT);
+        double x = input.getRawX();
+        double z = input.getRawZ();
+        input.setRawX(z);
+        input.setRawZ(x);
+        drive.driveCartesian(input);
     }
 
     public static void main(String... args)
