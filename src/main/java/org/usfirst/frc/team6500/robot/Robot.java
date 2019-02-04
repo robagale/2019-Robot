@@ -118,9 +118,6 @@ public class Robot extends TimedRobot
         TRCDriveInput.updateDriveInput();
         // And drive the robot
         TRCDriveParams input = TRCDriveInput.getStickDriveParams(Constants.INPUT_DRIVER_PORT);
-        //input.setRawX(0.0);
-        //input.setRawY(0.0);
-        //input.setRawZ(0.0);
         double x = input.getRawX();
         double z = input.getRawZ();
         input.setRawX(z);

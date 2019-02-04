@@ -8,7 +8,7 @@ def TRCversion = "2019.0.5"
 
 try {
     download {
-        //src "https://github.com/6500gearcats/Tin-Reinforced-Concrete/releases/download/${TRCversion}/Tin-Reinforced-Concrete-${TRCversion}.jar"
+        src "https://github.com/6500gearcats/Tin-Reinforced-Concrete/releases/download/${TRCversion}/Tin-Reinforced-Concrete-${TRCversion}.jar"
         dest buildDir
         overwrite true
     }

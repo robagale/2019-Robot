@@ -60,7 +60,7 @@ public class Constants
     public final static int GRABBER_MOTOR_RIGHT = 5;
     public final static int GRABBER_MOTORS[] = {GRABBER_MOTOR_LEFT, GRABBER_MOTOR_RIGHT};
     public final static SpeedControllerType GRABBER_MOTOR_TYPES[] = {SpeedControllerType.Spark, SpeedControllerType.Spark};
-     public final static double GRABBER_TIME_EJECT = 1.0;
+    public final static double GRABBER_TIME_EJECT = 1.0;
 
 
     // Encoder Constants
