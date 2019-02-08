@@ -30,7 +30,3 @@ public class Ramps
         return isDeployed;
     }
 }
-
-/*
- *  THE END!
- */

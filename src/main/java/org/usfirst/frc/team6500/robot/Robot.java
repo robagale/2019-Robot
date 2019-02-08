@@ -16,6 +16,7 @@ import org.usfirst.frc.team6500.trc.wrappers.sensors.TRCGyroBase;
 import org.usfirst.frc.team6500.trc.wrappers.systems.drives.TRCMecanumDrive;
 
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.RobotBase;
 
 
@@ -51,13 +52,15 @@ public class Robot extends TimedRobot
         // TRCDirectionalSystemAction.registerSystem("Grabber", grabber);
 
         // Setup: Systems: Sensors
-        // gyro = new TRCGyroBase(TRCTypes.GyroType.NavX);
+        gyro = new TRCGyroBase(TRCTypes.GyroType.NavX);
         encoders = new TRCEncoderSet(Constants.ENCODER_INPUTS, Constants.ENCODER_DISTANCES_PER_PULSE, false, 4, Constants.ENCODER_TYPES);
+        AnalogInput leftProx = new AnalogInput(Constants.PROXIMITY_LEFT);
+        AnalogInput rightProx = new AnalogInput(Constants.PROXIMITY_RIGHT);
 
 
         // Setup: Autonomous
-        // TRCDrivePID.initializeTRCDrivePID(encoders, gyro, drive, TRCTypes.DriveType.Mecanum, Constants.SPEED_AUTO);
-        // AutoAlign.setDrive(drive);
+        TRCDrivePID.initializeTRCDrivePID(encoders, gyro, drive, TRCTypes.DriveType.Mecanum, Constants.SPEED_AUTO);
+        AutoAlign.setupAlignment(drive, leftProx, rightProx);
 
 
         // Setup: Input
@@ -134,8 +137,3 @@ public class Robot extends TimedRobot
         RobotBase.startRobot(Robot::new);
     }
 }
-
-/*
- * THE END
- * This is the end of the "Robot.java" file...
- */
