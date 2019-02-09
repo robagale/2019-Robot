@@ -4,10 +4,12 @@ package org.usfirst.frc.team6500.robot;
 import org.usfirst.frc.team6500.robot.Constants;
 import org.usfirst.frc.team6500.trc.auto.TRCDirectionalSystemAction;
 import org.usfirst.frc.team6500.trc.auto.TRCDrivePID;
+import org.usfirst.frc.team6500.trc.auto.TRCPneumaticSystemAction;
 import org.usfirst.frc.team6500.trc.sensors.TRCCamera;
 import org.usfirst.frc.team6500.trc.sensors.TRCNetworkVision;
 import org.usfirst.frc.team6500.trc.systems.TRCDirectionalSystem;
 import org.usfirst.frc.team6500.trc.systems.TRCDriveInput;
+import org.usfirst.frc.team6500.trc.systems.TRCPneumaticSystem;
 import org.usfirst.frc.team6500.trc.util.TRCNetworkData;
 import org.usfirst.frc.team6500.trc.util.TRCTypes;
 import org.usfirst.frc.team6500.trc.util.TRCDriveParams;
@@ -26,7 +28,8 @@ public class Robot extends TimedRobot
     TRCGyroBase gyro;
     TRCEncoderSet encoders;
     TRCMecanumDrive drive;
-    TRCDirectionalSystem lift, grabber;
+    TRCDirectionalSystem lift, grabber, arm;
+    TRCPneumaticSystem pokie;
     int positionOptionID, targetOptionID;
 
 
@@ -46,20 +49,26 @@ public class Robot extends TimedRobot
         drive = new TRCMecanumDrive(Constants.DRIVE_WHEEL_PORTS, Constants.DRIVE_WHEEL_TYPES, Constants.DRIVE_WHEEL_INVERTS, true);
  
         // Setup: Systems: Directional
-        // lift = new TRCDirectionalSystem(Constants.LIFT_MOTORS, Constants.LIFT_MOTOR_TYPES, true, 1.0, -0.6);
-        // grabber = new TRCDirectionalSystem(Constants.GRABBER_MOTORS, Constants.GRABBER_MOTOR_TYPES, true, 1.0, -1.0);
-        // TRCDirectionalSystemAction.registerSystem("Lift", lift);
-        // TRCDirectionalSystemAction.registerSystem("Grabber", grabber);
+        lift    = new Lift(Constants.LIFT_MOTORS, Constants.LIFT_MOTOR_TYPES);
+        grabber = new Grabber(Constants.GRABBER_MOTORS, Constants.GRABBER_MOTOR_TYPES);
+        arm     = new Arm(Constants.ARM_MOTORS, Constants.ARM_MOTOR_TYPES);
+        TRCDirectionalSystemAction.registerSystem("Lift", lift);
+        TRCDirectionalSystemAction.registerSystem("Grabber", grabber);
+        TRCDirectionalSystemAction.registerSystem("Arm", arm);
+
+        pokie = new TRCPneumaticSystem(Constants.POKIE_PORTS, true);
+        TRCPneumaticSystemAction.registerSystem("Pokie", pokie);
+
 
         // Setup: Systems: Sensors
         gyro = new TRCGyroBase(TRCTypes.GyroType.NavX);
         encoders = new TRCEncoderSet(Constants.ENCODER_INPUTS, Constants.ENCODER_DISTANCES_PER_PULSE, false, 4, Constants.ENCODER_TYPES);
-        AnalogInput leftProx = new AnalogInput(Constants.PROXIMITY_LEFT);
+        AnalogInput leftProx  = new AnalogInput(Constants.PROXIMITY_LEFT);
         AnalogInput rightProx = new AnalogInput(Constants.PROXIMITY_RIGHT);
 
 
         // Setup: Autonomous
-        TRCDrivePID.initializeTRCDrivePID(encoders, gyro, drive, TRCTypes.DriveType.Mecanum, Constants.SPEED_AUTO);
+        TRCDrivePID.initializeTRCDrivePID(encoders, gyro, drive, TRCTypes.DriveType.Mecanum, Constants.SPEED_AUTO_TAPE);
         AutoAlign.setupAlignment(drive, leftProx, rightProx);
 
 
