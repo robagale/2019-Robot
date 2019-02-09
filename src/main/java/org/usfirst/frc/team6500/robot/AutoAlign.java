@@ -25,6 +25,11 @@ public class AutoAlign
     }
 
 
+    public static void richard(double distance, double angle)
+    {
+        return;
+    }
+
     public static void alignWithVisionTargets()
     {
         if (!isReady) { return; }
@@ -36,7 +41,7 @@ public class AutoAlign
             double distance = visionTable.getEntry("distance").getDouble(0.0);
             double angle = visionTable.getEntry("angle").getDouble(0.0);
 
-
+            richard(distance, angle);
         }
     }
 
