@@ -9,17 +9,25 @@ public class Constants
     public static final int INPUT_GUNNER_PORT         = 1;
     public static final int INPUT_PORTS[]             = {INPUT_DRIVER_PORT, INPUT_GUNNER_PORT};
 
-    public static final int INPUT_GRAB_PULL_BUTTON    = 3;
-    public static final int INPUT_GRAB_RELEASE_BUTTON = 5;
-    public static final int INPUT_GRAB_BUTTONS[]      = {INPUT_GRAB_PULL_BUTTON, INPUT_GRAB_RELEASE_BUTTON};
+    // public static final int INPUT_GRAB_PULL_BUTTON    = 3;
+    // public static final int INPUT_GRAB_RELEASE_BUTTON = 5;
+    // public static final int INPUT_GRAB_BUTTONS[]      = {INPUT_GRAB_PULL_BUTTON, INPUT_GRAB_RELEASE_BUTTON};
 
-    public static final int INPUT_LIFT_ELEVATE_BUTTON = 6;
-    public static final int INPUT_LIFT_DESCEND_BUTTON = 4;
-    public static final int INPUT_LIFT_BUTTONS[]      = {INPUT_LIFT_ELEVATE_BUTTON, INPUT_LIFT_DESCEND_BUTTON};
+    // public static final int INPUT_LIFT_ELEVATE_BUTTON = 6;
+    // public static final int INPUT_LIFT_DESCEND_BUTTON = 4;
+    // public static final int INPUT_LIFT_BUTTONS[]      = {INPUT_LIFT_ELEVATE_BUTTON, INPUT_LIFT_DESCEND_BUTTON};
 
-    public final static int INPUT_RAMP_RELEASE_BUTTON = 7;
+    public static final int INPUT_RAMP_RELEASE_BUTTON = 5;
 
     public static final int INPUT_AUTO_LINE_BUTTON    = 12;
+    public static final int INPUT_AUTO_GET_PANEL      = 3;
+    public static final int INPUT_AUTO_GET_CARGO      = 4;
+    public static final int INPUT_AUTO_L1_PANEL       = 11;
+    public static final int INPUT_AUTO_L2_PANEL       = 9;
+    public static final int INPUT_AUTO_L3_PANEL       = 7;
+    public static final int INPUT_AUTO_L1_CARGO       = 12;
+    public static final int INPUT_AUTO_L2_CARGO       = 10;
+    public static final int INPUT_AUTO_L3_CARGO       = 8;
 
 
     // Speed Constants

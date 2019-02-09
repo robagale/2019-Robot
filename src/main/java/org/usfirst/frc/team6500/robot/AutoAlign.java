@@ -90,4 +90,10 @@ public class AutoAlign
             }
         }
     }
+
+    public static void align()
+    {
+        alignWithVisionTargets();
+        alignWithFloorTape();
+    }
 }

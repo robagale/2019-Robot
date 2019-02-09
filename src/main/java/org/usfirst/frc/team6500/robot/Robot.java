@@ -59,6 +59,8 @@ public class Robot extends TimedRobot
         pokie = new TRCPneumaticSystem(Constants.POKIE_PORTS, true);
         TRCPneumaticSystemAction.registerSystem("Pokie", pokie);
 
+        Ramps.initilizeRamps();
+
 
         // Setup: Systems: Sensors
         gyro = new TRCGyroBase(TRCTypes.GyroType.NavX);
@@ -75,21 +77,17 @@ public class Robot extends TimedRobot
         // Setup: Input
         TRCDriveInput.initializeDriveInput(Constants.INPUT_PORTS, Constants.SPEED_BASE, Constants.SPEED_BOOST);
 
-        // Setup: Input: Button Bindings: Grabber
-        // TRCDriveInput.bindButton(Constants.INPUT_GUNNER_PORT, Constants.INPUT_GRAB_PULL_BUTTON, grabber::driveForward);
-        // TRCDriveInput.bindButton(Constants.INPUT_GUNNER_PORT, Constants.INPUT_GRAB_RELEASE_BUTTON, grabber::driveReverse);
-        // TRCDriveInput.bindButtonAbsence(Constants.INPUT_GUNNER_PORT, Constants.INPUT_GRAB_BUTTONS, grabber::fullStop);
+        // Setup: Input: Button Bindings: Autonomous Functions
+        TRCDriveInput.bindButton(Constants.INPUT_DRIVER_PORT, Constants.INPUT_AUTO_GET_PANEL, AutoProcess::obtainPanel);
+        TRCDriveInput.bindButton(Constants.INPUT_DRIVER_PORT, Constants.INPUT_AUTO_GET_CARGO, AutoProcess::obtainCargo);
+        TRCDriveInput.bindButton(Constants.INPUT_DRIVER_PORT, Constants.INPUT_AUTO_L1_PANEL, AutoProcess::levelOnePanel);
+        TRCDriveInput.bindButton(Constants.INPUT_DRIVER_PORT, Constants.INPUT_AUTO_L2_PANEL, AutoProcess::levelTwoPanel);
+        TRCDriveInput.bindButton(Constants.INPUT_DRIVER_PORT, Constants.INPUT_AUTO_L3_PANEL, AutoProcess::levelThreePanel);
+        TRCDriveInput.bindButton(Constants.INPUT_DRIVER_PORT, Constants.INPUT_AUTO_L1_CARGO, AutoProcess::levelOneCargo);
+        TRCDriveInput.bindButton(Constants.INPUT_DRIVER_PORT, Constants.INPUT_AUTO_L2_CARGO, AutoProcess::levelTwoCargo);
+        TRCDriveInput.bindButton(Constants.INPUT_DRIVER_PORT, Constants.INPUT_AUTO_L3_CARGO, AutoProcess::levelThreeCargo);
 
-        // Setup: Input: Button Bindings: Lift
-        // TRCDriveInput.bindButton(Constants.INPUT_GUNNER_PORT, Constants.INPUT_LIFT_ELEVATE_BUTTON, lift::driveForward);
-        // TRCDriveInput.bindButton(Constants.INPUT_GUNNER_PORT, Constants.INPUT_LIFT_DESCEND_BUTTON, lift::driveReverse);
-        // TRCDriveInput.bindButtonAbsence(Constants.INPUT_GUNNER_PORT, Constants.INPUT_LIFT_BUTTONS, lift::fullStop);
-
-        // Setup: Input: Button Bindings: Alignment
-        //TRCDriveInput.bindButton(Constants.INPUT_GUNNER_PORT, Constants.INPUT_ALIGN_FLOORTAPE, AutoAlign::alignWithFloorTape);
-
-        // Setup: Initialize Ramp Servos
-        Ramps.initilizeRamps();
+        // Setup: Input: Button Bindings: Ramps
         TRCDriveInput.bindButton(Constants.INPUT_DRIVER_PORT, Constants.INPUT_RAMP_RELEASE_BUTTON, Ramps::releaseRamps);
     }
 
