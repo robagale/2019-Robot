@@ -18,7 +18,7 @@ public class Constants
     // public static final int INPUT_LIFT_BUTTONS[]      = {INPUT_LIFT_ELEVATE_BUTTON, INPUT_LIFT_DESCEND_BUTTON};
 
     public static final int INPUT_RAMP_RELEASE_BUTTON = 5;
-
+ 
     public static final int INPUT_AUTO_LINE_BUTTON    = 12;
     public static final int INPUT_AUTO_GET_PANEL      = 3;
     public static final int INPUT_AUTO_GET_CARGO      = 4;
@@ -93,5 +93,5 @@ public class Constants
     // Proximity Sensor Constants
     public final static int PROXIMITY_LEFT            = 0;
     public final static int PROXIMITY_RIGHT           = 1;
-    public final static double PROXIMITY_THRESHOLD_MM = 5.0;
+    public final static double PROXIMITY_THRESHOLD_MM = 500.0;
 }
