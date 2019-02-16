@@ -5,9 +5,10 @@ import org.usfirst.frc.team6500.trc.util.TRCTypes.*;
 public class Constants
 {
     // Input Constants
-    public static final int INPUT_DRIVER_PORT         = 0;
-    public static final int INPUT_GUNNER_PORT         = 1;
-    public static final int INPUT_PORTS[]             = {INPUT_DRIVER_PORT, INPUT_GUNNER_PORT};
+    // public static final int INPUT_DRIVER_PORT         = 0;
+    // public static final int INPUT_GUNNER_PORT         = 1;
+    // public static final int INPUT_PORTS[]             = {INPUT_DRIVER_PORT, INPUT_GUNNER_PORT};
+    // public static final ControllerType INPUT_TYPES[] = {ControllerType.Extreme3D, ControllerType.Extreme3D};
 
     // public static final int INPUT_GRAB_PULL_BUTTON    = 3;
     // public static final int INPUT_GRAB_RELEASE_BUTTON = 5;
@@ -16,6 +17,10 @@ public class Constants
     // public static final int INPUT_LIFT_ELEVATE_BUTTON = 6;
     // public static final int INPUT_LIFT_DESCEND_BUTTON = 4;
     // public static final int INPUT_LIFT_BUTTONS[]      = {INPUT_LIFT_ELEVATE_BUTTON, INPUT_LIFT_DESCEND_BUTTON};
+
+    public static final int INPUT_DRIVER_PORT = 0;
+    public static final int INPUT_PORTS[] = {INPUT_DRIVER_PORT};
+    public static final ControllerType INPUT_TYPES[] = {ControllerType.Xbox360};
 
     public static final int INPUT_RAMP_RELEASE_BUTTON = 5;
  
@@ -94,4 +99,7 @@ public class Constants
     public final static int PROXIMITY_LEFT            = 0;
     public final static int PROXIMITY_RIGHT           = 1;
     public final static double PROXIMITY_THRESHOLD_MM = 500.0;
+
+
+    public final static int PNEUMATICS_PCM_ID = 10;
 }

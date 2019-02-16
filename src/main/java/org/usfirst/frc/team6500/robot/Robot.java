@@ -56,6 +56,7 @@ public class Robot extends TimedRobot
         TRCDirectionalSystemAction.registerSystem("Grabber", grabber);
         TRCDirectionalSystemAction.registerSystem("Arm", arm);
 
+        TRCPneumaticSystem.setupPneumatics(Constants.PNEUMATICS_PCM_ID);
         pokie = new TRCPneumaticSystem(Constants.POKIE_PORTS, true);
         TRCPneumaticSystemAction.registerSystem("Pokie", pokie);
 
@@ -75,20 +76,20 @@ public class Robot extends TimedRobot
 
 
         // Setup: Input
-        TRCDriveInput.initializeDriveInput(Constants.INPUT_PORTS, Constants.SPEED_BASE, Constants.SPEED_BOOST);
+        TRCDriveInput.initializeDriveInput(Constants.INPUT_PORTS, Constants.INPUT_TYPES, Constants.SPEED_BASE, Constants.SPEED_BOOST);
 
         // Setup: Input: Button Bindings: Autonomous Functions
-        TRCDriveInput.bindButton(Constants.INPUT_DRIVER_PORT, Constants.INPUT_AUTO_GET_PANEL, AutoProcess::obtainPanel);
-        TRCDriveInput.bindButton(Constants.INPUT_DRIVER_PORT, Constants.INPUT_AUTO_GET_CARGO, AutoProcess::obtainCargo);
-        TRCDriveInput.bindButton(Constants.INPUT_DRIVER_PORT, Constants.INPUT_AUTO_L1_PANEL, AutoProcess::levelOnePanel);
-        TRCDriveInput.bindButton(Constants.INPUT_DRIVER_PORT, Constants.INPUT_AUTO_L2_PANEL, AutoProcess::levelTwoPanel);
-        TRCDriveInput.bindButton(Constants.INPUT_DRIVER_PORT, Constants.INPUT_AUTO_L3_PANEL, AutoProcess::levelThreePanel);
-        TRCDriveInput.bindButton(Constants.INPUT_DRIVER_PORT, Constants.INPUT_AUTO_L1_CARGO, AutoProcess::levelOneCargo);
-        TRCDriveInput.bindButton(Constants.INPUT_DRIVER_PORT, Constants.INPUT_AUTO_L2_CARGO, AutoProcess::levelTwoCargo);
-        TRCDriveInput.bindButton(Constants.INPUT_DRIVER_PORT, Constants.INPUT_AUTO_L3_CARGO, AutoProcess::levelThreeCargo);
+        // TRCDriveInput.bindButton(Constants.INPUT_DRIVER_PORT, Constants.INPUT_AUTO_GET_PANEL, AutoProcess::obtainPanel);
+        // TRCDriveInput.bindButton(Constants.INPUT_DRIVER_PORT, Constants.INPUT_AUTO_GET_CARGO, AutoProcess::obtainCargo);
+        // TRCDriveInput.bindButton(Constants.INPUT_DRIVER_PORT, Constants.INPUT_AUTO_L1_PANEL, AutoProcess::levelOnePanel);
+        // TRCDriveInput.bindButton(Constants.INPUT_DRIVER_PORT, Constants.INPUT_AUTO_L2_PANEL, AutoProcess::levelTwoPanel);
+        // TRCDriveInput.bindButton(Constants.INPUT_DRIVER_PORT, Constants.INPUT_AUTO_L3_PANEL, AutoProcess::levelThreePanel);
+        // TRCDriveInput.bindButton(Constants.INPUT_DRIVER_PORT, Constants.INPUT_AUTO_L1_CARGO, AutoProcess::levelOneCargo);
+        // TRCDriveInput.bindButton(Constants.INPUT_DRIVER_PORT, Constants.INPUT_AUTO_L2_CARGO, AutoProcess::levelTwoCargo);
+        // TRCDriveInput.bindButton(Constants.INPUT_DRIVER_PORT, Constants.INPUT_AUTO_L3_CARGO, AutoProcess::levelThreeCargo);
 
         // Setup: Input: Button Bindings: Ramps
-        TRCDriveInput.bindButton(Constants.INPUT_DRIVER_PORT, Constants.INPUT_RAMP_RELEASE_BUTTON, Ramps::releaseRamps);
+        // TRCDriveInput.bindButton(Constants.INPUT_DRIVER_PORT, Constants.INPUT_RAMP_RELEASE_BUTTON, Ramps::releaseRamps);
     }
 
     /**
@@ -108,7 +109,7 @@ public class Robot extends TimedRobot
     public void autonomousPeriodic()
     {
         // Check all inputs
-        TRCDriveInput.updateDriveInput();
+        TRCDriveInput.checkButtonBindings();
         // And drive the robot
         drive.driveCartesian(TRCDriveInput.getStickDriveParams(Constants.INPUT_DRIVER_PORT));
     }
@@ -129,7 +130,7 @@ public class Robot extends TimedRobot
     public void teleopPeriodic()
     {
         // Check all inputs
-        TRCDriveInput.updateDriveInput();
+        TRCDriveInput.checkButtonBindings();
         // And drive the robot
         TRCDriveParams input = TRCDriveInput.getStickDriveParams(Constants.INPUT_DRIVER_PORT);
         double x = input.getRawX();
