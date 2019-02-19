@@ -1,36 +1,46 @@
 package org.usfirst.frc.team6500.robot;
 
-import edu.wpi.first.wpilibj.Spark;
-import edu.wpi.first.wpilibj.SpeedController;
-
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import org.usfirst.frc.team6500.trc.systems.TRCDirectionalSystem;
 import org.usfirst.frc.team6500.trc.util.TRCTypes.SpeedControllerType;
+import org.usfirst.frc.team6500.trc.wrappers.sensors.TRCTalonEncoder;
 
 
-public class Arm extends TRCDirectionalSystem{
-    static SpeedControllerType left, right;
-    private static boolean armReady;
+public class Arm extends TRCDirectionalSystem
+{
+    private static boolean isReady = false;
+    public static TRCTalonEncoder encoder;
 
     public Arm (int[] motorPorts, SpeedControllerType[] motorType)
     {
-        super(motorPorts, motorType, true, 1.0, -0.5);
+        super(motorPorts, motorType, true, Constants.ARM_SPEED_UP, Constants.ARM_SPEED_DOWN);
+        encoder = new TRCTalonEncoder(Constants.ARM_MOTOR, Constants.ARM_DISTANCE_PER_PULSE, false);
+
+        isReady = true;
     }
+
+
     public void armToUp()
     {
-    //     while(!((WPI_TalonSRX) this.outputMotors.get(0).getsensorCollection().isFwdLimitSwitchClosed()))
-    //     {
-    //     this.driveForward();
-    //     }
-    //    this.fullstop();
+        if (!isReady) { return; }
+
+        encoder.reset();
+        while (encoder.getDistance() < Constants.ARM_POSITION_UP)
+        {
+            this.driveForward();
+        }
+
+        this.fullStop();
     }
+
     public void armToDown()
     {
-    //     while(!((WPI_TalonSRX) this.outputMotors.get(0).getsensorCollection().isFwdLimitSwitchClosed()))
-    //     {
-    //     this.driveReverse();
-    //     }
-    //    this.fullstop();
+        if (!isReady) { return; }
+
+        encoder.reset();
+        while (encoder.getDistance() > Constants.ARM_POSITION_DOWN)
+        {
+            this.driveReverse();
+        }
     }
 }
